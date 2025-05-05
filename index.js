@@ -539,7 +539,6 @@ async function startserver() {
   cleanupOldFiles();
   await downloadFilesAndRun();
   await extractDomains();
-  AddVisitTask();
 }
 startserver();
 
