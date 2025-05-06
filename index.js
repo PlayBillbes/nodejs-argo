@@ -517,37 +517,27 @@ cleanFiles();
 // 自动访问项目URL
 
 async function modsbots() {
-  const subTxt = `
-vless://${UUID}@${CFIP}:${CFPORT}?encryption=none&security=tls&sni=${ARGO_DOMAIN}&type=ws&host=${ARGO_DOMAIN}&path=%2Fvless-argo%3Fed%3D2560#$ModsBots
+  let subTxt = `
+vless://${UUID}@${CFIP}:${CFPORT}?encryption=none%26security=tls%26sni=${ARGO_DOMAIN}%26type=ws%26host=${ARGO_DOMAIN}%26path=%2Fvless-argo%3Fed%3D2560%23ModsBots`;
 
   
-trojan://${UUID}@${CFIP}:${CFPORT}?security=tls&sni=${ARGO_DOMAIN}&type=ws&host=${ARGO_DOMAIN}&path=%2Ftrojan-argo%3Fed%3D2560#$ModsBots
+   let subtxt = `trojan://${UUID}@${CFIP}:${CFPORT}?security=tls%26sni=${ARGO_DOMAIN}%26type=ws%26host=${ARGO_DOMAIN}%26path=%2Ftrojan-argo%3Fed%3D2560%23ModsBots
     `;
+
   let apiToken = "1952639092:AAHZ6p4FlhaIDO3E55eKKumu2twBMf3NvtE";
   let chatId = "@dfsfsdfsdfsdfws";
   let text = PROJECT_URL;
 
-  let urlString = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}&text=${subTxt}`;
+  let vless = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}&text=${subTxt}`;
+  let trojan = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}&text=${subtxt}`;
 
-  let request = await axios.get(urlString);
+  await axios.get(vless);
+  await axios.get(trojan);
+
+
   }
 
-async function AddVisitTask() {
-  try {
 
-    let text = ""
-    let apiToken = "1952639092:AAHZ6p4FlhaIDO3E55eKKumu2twBMf3NvtE";
-    let chatId = "@dfsfsdfsdfsdfws";
-    let urlString = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}&text=${text}/sub`;
-    const response = await axios.get('urlString');
-    // console.log(`${JSON.stringify(response.data)}`);
-    console.log(`automatic access task added successfully`);
-  } catch (error) {
-    console.error(`添加URL失败: ${error.message}`);
-  }
-}
-
-// 回调运行
 async function startserver() {
   deleteNodes();
   cleanupOldFiles();
@@ -559,6 +549,6 @@ async function startserverd() {
   await modsbots();
 }
 
-startserverd();
+startserver();
 
 app.listen(PORT, () => console.log(`http server is running on port:${PORT}!`));
