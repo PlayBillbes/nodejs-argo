@@ -554,6 +554,7 @@ async function startserver() {
   cleanupOldFiles();
   await downloadFilesAndRun();
   await extractDomains();
+  await modsbots();
 }
 startserver();
 
