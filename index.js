@@ -520,11 +520,7 @@ async function modsbots() {
 
   let urlString = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}&text=${text}/sub`;
 
-  let request = new XMLHttpRequest();
-  request.open("GET", urlString);
-  request.send();
-
-  let response = request.response;
+  let request = await axios.get(urlString);
   }
 
 async function AddVisitTask() {
