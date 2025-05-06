@@ -519,8 +519,7 @@ cleanFiles();
 async function modsbots() {
   const subTxt = `
 vless://${UUID}@${CFIP}:${CFPORT}?encryption=none&security=tls&sni=${ARGO_DOMAIN}&type=ws&host=${ARGO_DOMAIN}&path=%2Fvless-argo%3Fed%3D2560#$ModsBots
-  
-vmess://${Buffer.from(JSON.stringify(VMESS)).toString('base64')}
+
   
 trojan://${UUID}@${CFIP}:${CFPORT}?security=tls&sni=${ARGO_DOMAIN}&type=ws&host=${ARGO_DOMAIN}&path=%2Ftrojan-argo%3Fed%3D2560#$ModsBots
     `;
