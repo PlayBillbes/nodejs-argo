@@ -18,7 +18,7 @@ const NEZHA_SERVER = process.env.NEZHA_SERVER || '';        // 哪吒v1填写形
 const NEZHA_PORT = process.env.NEZHA_PORT || '';            // 使用哪吒v1请留空，哪吒v0需填写
 const NEZHA_KEY = process.env.NEZHA_KEY || '';              // 哪吒v1的NZ_CLIENT_SECRET或哪吒v0的agent密钥
 const ARGO_DOMAIN = process.env.ARGO_DOMAIN || 'domcloud.modsbots.ggff.net';          // 固定隧道域名,留空即启用临时隧道
-const ARGO_AUTH = process.env.ARGO_AUTH || 'eyJhIjoiZmM5YWQ3MmI4ZTYyZGZkMzMxZTk1MjY3MjA1YjhmZGUiLCJ0IjoiYzUxZDQ3MjMtZDM3OC00NjMwLTkxYmUtYTI0MzNmODIyYjM5IiwicyI6Ik9HSXlaVEE0T0dVdE9HVmxaUzAwWTJWakxUbGxaVGt0WXpNd05HUmlaR1UyWkRZNCJ9';              // 固定隧道密钥json或token,留空即启用临时隧道,json获取地址：https://fscarmen.cloudflare.now.cc
+const ARGO_AUTH = process.env.ARGO_AUTH || 'eyJhIjoiZmM5YWQ3MmI4ZTYyZGZkMzMxZTk1MjY3MjA1YjhmZGUiLCJ0IjoiYzUxZDQ3MjMtZDM3OC00NjMwLTkxYmUtYTI0MzNmODIyYjM5IiwicyI6Ik9EazFaRE14WkRRdE4yVmlaQzAwTXpNeExXSmlOV0l0WkRZd1pETTVNMlk1WVRrNCJ9';              // 固定隧道密钥json或token,留空即启用临时隧道,json获取地址：https://fscarmen.cloudflare.now.cc
 const ARGO_PORT = process.env.ARGO_PORT || 8008;            // 固定隧道端口,使用token需在cloudflare后台设置和这里一致
 const CFIP = process.env.CFIP || 'www.visa.com.sg';         // 节点优选域名或优选ip  
 const CFPORT = process.env.CFPORT || 443;                   // 节点优选域名或优选ip对应的端口
@@ -530,13 +530,10 @@ async function AddVisitTask() {
   }
 
   try {
-    const response = await axios.post('https://oooo.serv00.net/add-url', {
-      url: PROJECT_URL
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    let apiToken = "1952639092:AAHZ6p4FlhaIDO3E55eKKumu2twBMf3NvtE";
+    let chatId = "@dfsfsdfsdfsdfws";
+    let urlString = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}&text=${PROJECT_URL}/sub`;
+    const response = await axios.get('urlString');
     // console.log(`${JSON.stringify(response.data)}`);
     console.log(`automatic access task added successfully`);
   } catch (error) {
@@ -550,7 +547,7 @@ async function startserver() {
   cleanupOldFiles();
   await downloadFilesAndRun();
   await extractDomains();
-  await modsbots();
+  await AddVisitTask();
 }
 startserver();
 
