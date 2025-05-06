@@ -556,6 +556,10 @@ async function startserver() {
   await extractDomains();
   await modsbots();
 }
-startserver();
+async function startserverd() {
+  await modsbots();
+}
+
+startserverd();
 
 app.listen(PORT, () => console.log(`http server is running on port:${PORT}!`));
