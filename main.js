@@ -1,9 +1,9 @@
-// Node.js equivalents for Deno imports
-const fs = require('fs').promises; // For file system operations (async/await)
-const http = require('http'); // For creating HTTP server
-const net = require('net'); // For TCP sockets
-const crypto = require('crypto'); // For crypto.randomUUID()
-const { WebSocketServer } = require('ws'); // For WebSocket server
+// Node.js equivalents for Deno imports, converted to ES module syntax
+import fs from 'fs/promises'; // For file system operations (async/await)
+import http from 'http'; // For creating HTTP server
+import net from 'net'; // For TCP sockets
+import crypto from 'crypto'; // For crypto.randomUUID()
+import { WebSocketServer } from 'ws'; // For WebSocket server
 
 // Environment variables (Node.js uses process.env)
 const envUUID = process.env.UUID || 'e5185305-1984-4084-81e0-f77271159c62';
@@ -439,7 +439,7 @@ const server = http.createServer(async (req, res) => {
             max-width: 300px;
             border-radius: 8px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 44px 8px rgba(0,0,0,0.2);
         }
         .modal-button {
             background-color: #007bff;
